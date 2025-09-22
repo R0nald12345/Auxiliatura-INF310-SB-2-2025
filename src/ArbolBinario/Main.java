@@ -16,13 +16,19 @@ public class Main {
         arbol1.insertarNodo(100);
         arbol1.insertarNodo(90);
         arbol1.insertarNodo(120);
-        arbol1.insertarNodo(70);
-        arbol1.insertarNodo(75);
+        arbol1.insertarNodo(95);
         arbol1.insertarNodo(130);
-        arbol1.insertarNodo(200);
         
         System.out.println("Cantidad de Nodos: " + arbol1.cantidadNodos());
         System.out.println("Cantidad de Nodos Pares: " + arbol1.contarNodosPares());
+        System.out.println("Recorrido InOrden:");
+        arbol1.recorridoInOrden();
         
+        System.out.println("Recorrido preOrden:");
+        arbol1.recorridoPreOrden();
+        System.out.println("Recorrido postOrden:");
+        arbol1.recorridoPostOrden();
+        
+        System.out.println("Contar Hojas: " + arbol1.contarHojas());
     }
 }

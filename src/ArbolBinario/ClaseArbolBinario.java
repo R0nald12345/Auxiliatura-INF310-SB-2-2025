@@ -5,6 +5,9 @@
  */
 package ArbolBinario;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  *
  * @author USER
@@ -68,9 +71,25 @@ public class ClaseArbolBinario <T extends Comparable<T> > implements IArbolBinar
 
     @Override
     public void recorridoInOrden() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        recorridoInOrdenRecursivo(this.raiz);
+        System.out.println("");
     }
 
+     //Privado
+    private void recorridoInOrdenRecursivo(ClaseNodo<T> raizAux){
+        //Caso Base
+        if(raizAux == null) return ;
+        //Caso General
+        
+        //Hijo Izquierdo
+        recorridoInOrdenRecursivo(raizAux.getHijoIzquierdo());
+        //padre
+        System.out.print(raizAux.getClave() + ", ");
+        //Hijo Derecho
+        recorridoInOrdenRecursivo(raizAux.getHijoDerecho());
+        
+    }
+    
     @Override
     public boolean isHoja(ClaseNodo<T> nodo) {
         return nodo.getHijoIzquierdo() == null && nodo.getHijoDerecho() == null;
@@ -108,6 +127,89 @@ public class ClaseArbolBinario <T extends Comparable<T> > implements IArbolBinar
                 return HI + HD;
             }
     } 
+
+    @Override
+    public void recorridoPreOrden() {
+        recorridoPreOrdenRecursivo(this.raiz);
+        System.out.println("");
+    }
     
+    private void recorridoPreOrdenRecursivo(ClaseNodo<T> raizAux){
+        //Caso Base
+        if(raizAux == null) return ;
+        //Caso General
+        //padre
+        System.out.print(raizAux.getClave() + ", ");
+        //Hijo Izquierdo
+        recorridoInOrdenRecursivo(raizAux.getHijoIzquierdo());
+        //Hijo Derecho
+        recorridoInOrdenRecursivo(raizAux.getHijoDerecho());
+    }
+    
+
+    @Override
+    public void recorridoPostOrden() {
+        recorridoPostOrdenRecursivo(this.raiz);
+        System.out.println("");
+    }
+    
+    private void recorridoPostOrdenRecursivo(ClaseNodo<T> raizAux){
+        //Caso Base
+        if(raizAux == null) return ;
+        //Caso General
+        
+        //Hijo Izquierdo
+        recorridoInOrdenRecursivo(raizAux.getHijoIzquierdo());
+        
+        //Hijo Derecho
+        recorridoInOrdenRecursivo(raizAux.getHijoDerecho());
+        
+        //padre
+        System.out.print(raizAux.getClave() + ", ");
+    }
+
+    @Override
+    public int contarHojas() {
+        return contarHojasPrivate(this.raiz);
+    }
+    
+    private int contarHojasPrivate(ClaseNodo<T> raizAux){
+        if(raizAux == null){
+            return 0;
+        }
+        if(isHoja( raizAux)){
+            return 1;
+        }
+        //HIjo Izquierdo
+        int i = contarHojasPrivate(raizAux.getHijoIzquierdo());
+        //HIjo Derecho
+        int d = contarHojasPrivate(raizAux.getHijoDerecho());
+        return i + d;
+    }
+    
+  
+    
+   
     
 }
+
+/*
+    public void RecorridoPorNivel(){
+        Queue<ClaseNodo<T>> cola = new LinkedList<ClaseNodo<T>>();
+        cola.add(raiz);
+        while(cola.isEmpty()){
+            
+            ClaseNodo<T> nodoAux = cola.poll();
+            if(nodoAux != null){
+                System.out.println(nodoAux.getClave());
+                if(nodoAux.getHijoIzquierdo() != null){
+                    cola.add(nodoAux.getHijoIzquierdo());
+                }
+                if(nodoAux.getHijoDerecho()!= null){
+                    cola.add(nodoAux.getHijoDerecho());
+                }
+            }
+        }
+    }
+
+*/

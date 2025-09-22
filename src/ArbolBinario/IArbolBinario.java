@@ -18,12 +18,12 @@ public interface IArbolBinario<T extends Comparable<T>> {
     public int contarNodosPares();
     
     public void recorridoInOrden();
-    //public void recorridoPreOrden();
-    //public void recorridoPostOrden();
+    public void recorridoPreOrden();
+    public void recorridoPostOrden();
     //public void recorridoPorNivel();
     public boolean isHoja(ClaseNodo<T> Nodo);
     
-    //public int contarNodosPares();
+    public int contarHojas();
     //public int contarNodosParesIterativo();
     //public int contarCantidadHijosVaciosInOrdenIterativo();
 }
