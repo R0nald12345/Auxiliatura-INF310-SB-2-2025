@@ -5,6 +5,8 @@
  */
 package MVias;
 
+import java.util.List;
+
 /**
  *
  * @author USER
@@ -14,7 +16,10 @@ public interface IArbolMVias<T extends Comparable<T>> {
     void insertar(T claveInsetar);
     int obtenerAltura();
     int contarCantidadNodos();
-    void recorridoInOrden();
+    List<T> recorridoInOrden();
     boolean esArbolVacio();
+    int cantidadNodos();
+    boolean verificarExiste(T dato);
+    //String recorridoPorNivel();
     
 }
