@@ -108,18 +108,18 @@ public class ClaseArbolMVias<T extends Comparable<T>> implements IArbolMVias<T> 
     public int obtenerAltura() {
         return obtenerAlturaRecursivo(this.raiz);
     }
-    
-    private int obtenerAlturaRecursivo(ClaseNodoMVias<T> raizAux){
-        if(raizAux == null ){
+
+    private int obtenerAlturaRecursivo(ClaseNodoMVias<T> raizAux) {
+        if (raizAux == null) {
             return 0;
         }
-        if(raizAux.esHoja()){
+        if (raizAux.esHoja()) {
             return 1;
         }
         int alturaMaxima = 0;
         for (int i = 0; i < raizAux.cantidadDeClavesNoVacias(); i++) {
             int alturaHijo = obtenerAlturaRecursivo(raizAux.getHijo(i));
-            if(alturaHijo > alturaMaxima){
+            if (alturaHijo > alturaMaxima) {
                 alturaMaxima = alturaHijo;
             }
         }
@@ -165,12 +165,12 @@ public class ClaseArbolMVias<T extends Comparable<T>> implements IArbolMVias<T> 
     public int cantidadNodos() {
         return cantidadNodosRecursivo(this.raiz);
     }
-    
-    private int cantidadNodosRecursivo(ClaseNodoMVias<T> raizAux ){
-        if(raizAux == null){
+
+    private int cantidadNodosRecursivo(ClaseNodoMVias<T> raizAux) {
+        if (raizAux == null) {
             return 0;
         }
-        if(raizAux.esHoja()){
+        if (raizAux.esHoja()) {
             return 1;
         }
         //Caso General
@@ -183,25 +183,58 @@ public class ClaseArbolMVias<T extends Comparable<T>> implements IArbolMVias<T> 
 
     @Override
     public boolean verificarExiste(T dato) {
-        if(this.raiz == null){
+        if (this.raiz == null) {
             return false;
         }
         Queue<ClaseNodoMVias<T>> cola = new LinkedList<>();
         cola.add(raiz);
-        while(!cola.isEmpty()){
-            ClaseNodoMVias nodoActual = cola.poll(); 
+        while (!cola.isEmpty()) {
+            ClaseNodoMVias nodoActual = cola.poll();
             for (int i = 0; i < nodoActual.cantidadDeClavesNoVacias(); i++) {
-                if(nodoActual.getClave(i) == dato){
+                if (nodoActual.getClave(i) == dato) {
                     return true;
                 }
             }
             for (int i = 0; i <= nodoActual.cantidadDeClavesNoVacias(); i++) {
-                if(!nodoActual.esHijoVacio(i)){
+                if (!nodoActual.esHijoVacio(i)) {
                     cola.add(nodoActual.getHijo(i));
                 }
             }
         }
         return false;
+    }
+
+    /**
+     * Si retorna -1, el arbol esta vacio o el nivel es invalido
+     *
+     * @param nivel
+     * @return
+     */
+    @Override
+    public int verificarClavesVaciaPorNivel(int nivel) { //1
+        if (raiz == null) {
+            return -1;
+        } else {
+            int contador = 0; //Me cuenta la cantidad de Claves
+            int controlador = 0; //Me controla si me encuentro en el nivel deseado  //1
+            Queue<ClaseNodoMVias<T>> cola = new LinkedList<>();
+            cola.add(raiz);
+            while (!cola.isEmpty()) {
+                ClaseNodoMVias nodoActual = cola.poll();
+                if (nivel == controlador) {
+                    contador = contador + nodoActual.cantidadDeClavesVacias();
+                } else {
+                    for (int i = 0; i <= nodoActual.cantidadDeClavesNoVacias(); i++) {
+                        if (!nodoActual.esHijoVacio(i)) {
+                            cola.add(nodoActual.getHijo(i));
+                        }
+                    }
+                    controlador++;
+                }
+            }
+            return contador;
+        }
+
     }
 
 }

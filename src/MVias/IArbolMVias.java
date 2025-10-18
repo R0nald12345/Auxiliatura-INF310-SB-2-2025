@@ -20,6 +20,7 @@ public interface IArbolMVias<T extends Comparable<T>> {
     boolean esArbolVacio();
     int cantidadNodos();
     boolean verificarExiste(T dato);
+    int verificarClavesVaciaPorNivel(int nivel);
     //String recorridoPorNivel();
     
 }

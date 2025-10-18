@@ -20,10 +20,13 @@ public class Main {
         arbolMVias.insertar(95);
         arbolMVias.insertar(96);
         arbolMVias.insertar(65);
+        arbolMVias.insertar(101);
         
         System.out.println("La altura maxima es: " + arbolMVias.obtenerAltura());
         System.out.println("cantidad de Nodos MVias: " + arbolMVias.cantidadNodos());
         System.out.println("Verificar Existe: " + arbolMVias.verificarExiste(1000));
+        
+        System.out.println("Verificar cantidad Clave Vacia de nivel 1: " + arbolMVias.verificarClavesVaciaPorNivel(1));
         
     }
 }

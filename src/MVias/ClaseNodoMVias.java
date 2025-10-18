@@ -12,6 +12,7 @@ import java.util.List;
  *
  * @author USER
  */
+
 public class ClaseNodoMVias<T> {
      private List<T> listaDeClaves;
     private List<ClaseNodoMVias<T>> listaDeHijos;
@@ -110,6 +111,7 @@ public class ClaseNodoMVias<T> {
         return cantidad;
     }
 
+    
     public int cantidadDeClavesNoVacias() {
         int cantidad = 0;
         for (int i = 0; i < this.listaDeClaves.size(); i++) {
